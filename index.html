@@ -1019,7 +1019,7 @@
                     <div class="contact-links">
                         <a href="mailto:akash.deep@ttu.edu" class="contact-link">📧 akash.deep@ttu.edu</a>
                         <a href="https://github.com/akashdeepo/ML_TI_RFR" class="contact-link">💻 GitHub Repository</a>
-                        <a href="#" class="contact-link">📊 Full Paper Available</a>
+                        <a href="https://doi.org/10.3390/jrfm18030142" class="contact-link">📊 Full Paper Available</a>
                         <a href="#" class="contact-link">🤝 Collaboration Welcome</a>
                     </div>
                 </div>
@@ -1037,29 +1037,6 @@
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
-
-        // Enhanced speaker notes with precise timing and emphasis
-        const speakerNotes = [
-            "Welcome to our research on machine learning in high-frequency trading. Today I'll share findings that challenge fundamental assumptions about technical indicators. We tested sophisticated models that achieved 81% training accuracy but lost money in real trading.",
-            
-            "Let me establish the theoretical context. We're operating in a battlefield between the Efficient Market Hypothesis, which says technical analysis shouldn't work, and behavioral finance, which suggests noise traders create exploitable inefficiencies. The question is: who's right at minute-level frequencies?",
-            
-            "Our research fills a critical gap. Most studies examine daily data, but HFT operates at minute-level frequencies where market microstructure dominates. We're the first to systematically test technical indicators at this granularity using advanced machine learning and risk-adjusted metrics.",
-            
-            "Our methodology is rigorous. We used Bloomberg Terminal data, minute-level SPY prices, Random Forest models with 100 trees, and 13 different configurations. The system architecture shows our comprehensive approach from data processing to performance analysis. This isn't a simple backtest - it's a complete trading system.",
-            
-            "We tested 12 technical indicators across 5 categories - trend following, momentum, volatility, volume-based, and support/resistance tools. Each was carefully normalized and integrated. We tested them individually and in hybrid combinations using advanced risk-reward metrics beyond simple Sharpe ratios.",
-            
-            "Here's the shocking truth. Look at this chart - buy-and-hold ended at $10,229. Every single ML model lost money, between 2.4% and 3.9%. Despite 75-81% training R-squared, testing R-squared dropped to negative values. This isn't poor performance - it's systematic failure.",
-            
-            "The feature importance analysis reveals why. Raw price features dominated 60%+ of predictions while sophisticated technical indicators contributed only 14-15%. In high-frequency environments, direct price movements contain more signal than derived indicators. We're adding complexity without benefit.",
-            
-            "But there's a silver lining. While indicators don't predict returns, they excel at risk management. Rachev ratios of 0.919-0.961 and controlled 4% maximum drawdowns show their value. We need to reframe the question from 'Do indicators predict returns?' to 'Do indicators manage risk?'",
-            
-            "Our findings support the semi-strong form of EMH - technical indicators may briefly exploit inefficiencies, but predictive power is limited in high-frequency contexts. For practitioners: focus on adaptive models, use indicators for risk not returns, and robust testing is critical.",
-            
-            "In conclusion, traditional technical indicators enhance risk management but fail to generate excess returns in HFT. The future lies in adaptive, regime-aware models. This research demonstrates that rigorous empirical testing can reveal surprising truths about market efficiency. Thank you - questions welcome!"
-        ];
 
         function updateSlide() {
             // Hide all slides
@@ -1083,44 +1060,6 @@
             // Update button states
             document.getElementById('prevBtn').disabled = currentSlide === 0;
             document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
-            
-            // Show speaker notes briefly
-            showSpeakerNote(currentSlide);
-        }
-
-        function showSpeakerNote(slideIndex) {
-            // Create or update speaker notes display
-            let notesElement = document.getElementById('speakerNotes');
-            if (!notesElement) {
-                notesElement = document.createElement('div');
-                notesElement.id = 'speakerNotes';
-                notesElement.style.cssText = `
-                    position: fixed;
-                    bottom: 120px;
-                    right: 30px;
-                    background: rgba(0, 0, 0, 0.95);
-                    color: white;
-                    padding: 15px 20px;
-                    border-radius: 12px;
-                    max-width: 350px;
-                    font-size: 13px;
-                    line-height: 1.4;
-                    opacity: 0;
-                    transition: opacity 0.3s ease;
-                    z-index: 1002;
-                    backdrop-filter: blur(10px);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
-                `;
-                document.body.appendChild(notesElement);
-            }
-            
-            notesElement.textContent = speakerNotes[slideIndex];
-            notesElement.style.opacity = '1';
-            
-            // Hide after 8 seconds
-            setTimeout(() => {
-                notesElement.style.opacity = '0';
-            }, 8000);
         }
 
         function nextSlide() {
@@ -1226,7 +1165,7 @@
             clearTimeout(hideNavTimer);
             navigation.style.opacity = '1';
             hideNavTimer = setTimeout(() => {
-                navigation.style.opacity = '0.3';
+                navigation.style.opacity = '0.7';
             }, 3000);
         }
 
@@ -1235,20 +1174,6 @@
 
         // Initialize timer
         resetHideTimer();
-
-        // Presentation timer (optional)
-        let startTime = Date.now();
-        
-        function updateTimer() {
-            const elapsed = Math.floor((Date.now() - startTime) / 1000);
-            const minutes = Math.floor(elapsed / 60);
-            const seconds = elapsed % 60;
-            
-            // You can display this timer somewhere if needed
-            console.log(`Presentation time: ${minutes}:${seconds.toString().padStart(2, '0')}`);
-        }
-
-        setInterval(updateTimer, 1000);
     </script>
 </body>
 </html>
